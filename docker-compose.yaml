@@ -50,6 +50,7 @@ services:
       - /var/run/
 volumes:
   db:
+  tailscale-state:
   dbcfg:
   data:
   log:
