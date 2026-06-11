@@ -10,7 +10,7 @@ services:
       - dbcfg:/data/configdb
 
   controller:
-    image: jacobalberty/unifi:latest
+    image: buckaroogeek/unifi:v10
     depends_on:
       - mongo
     network_mode: host
