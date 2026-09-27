@@ -40,9 +40,10 @@ services:
     devices:
       - /dev/net/tun
     volumes:
-      - tailscale-state:/var/lib/tailscale
+      - tailscale-state:/var/lib/tailscale   # or `state:/var/lib/tailscale` on the home compose
     labels:
       - io.balena.features.kernel-modules=1
+      - io.balena.features.procfs=1
     cap_add:
       - net_admin
       - net_raw
