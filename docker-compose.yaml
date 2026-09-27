@@ -37,6 +37,7 @@ services:
       dockerfile: Dockerfile
     network_mode: host
     restart: on-failure
+    privileged: true
     devices:
       - /dev/net/tun
     volumes:
