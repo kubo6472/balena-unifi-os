@@ -9,13 +9,12 @@ then
     exit 0
 fi
 
-# load the kernel module if it exists
-if modprobe wireguard 2>/dev/null
-then
-    modinfo wireguard || true
-    dmesg | grep wireguard || true
-    export TS_USERSPACE="${TS_USERSPACE:-false}"
-fi
+# WireGuard may be compiled into the kernel rather than a loadable
+# module, in which case modprobe reports failure even though support
+# exists — so don't gate kernel networking on modprobe's exit code.
+modprobe wireguard 2>/dev/null || true
+dmesg | grep -i wireguard || true
+export TS_USERSPACE="${TS_USERSPACE:-false}"
 
 mkdir -p /dev/net
 [ ! -c /dev/net/tun ] && mknod /dev/net/tun c 10 200
